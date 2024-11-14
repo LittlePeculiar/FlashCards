@@ -24,6 +24,7 @@ class HomeViewModel {
     @MainActor func fetch() async {
         guard !isLoading else { return }
         
+        isLoading = true
         var questions = [QuestionModel]()
         let request = NSFetchRequest<Question>(entityName: "Question")
 
@@ -36,6 +37,26 @@ class HomeViewModel {
         }
         catch { fatalError("Error fetching Fast Dates") }
         cards = questions
+        isLoading = false
+    }
+    
+    // fetch from Core Data
+    @MainActor func delete(card: QuestionModel) async {
+        let request = NSFetchRequest<Question>(entityName: "Question")
+        let predicate = NSPredicate(format: "question == %@", card.question)
+        request.predicate = predicate
+        
+        do {
+            let results = try self.moc.fetch(request)
+
+            if results.count == 1 {
+                for entity in results {
+                    self.moc.delete(entity)
+                }
+                await fetch()
+            }
+        }
+        catch { fatalError("Error saving new Fast date") }
     }
 
 }

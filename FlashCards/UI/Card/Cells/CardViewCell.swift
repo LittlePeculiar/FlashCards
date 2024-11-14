@@ -21,6 +21,7 @@ class CardViewCell: UICollectionViewCell {
     @IBOutlet var option3Label: UILabel!
     @IBOutlet var option4Label: UILabel!
     @IBOutlet var answerLabel: UILabel!
+    @IBOutlet var questionView: UIView!
     @IBOutlet var answerView: UIView!
     
     weak var delegate: CardViewCellDelegate?
@@ -74,9 +75,9 @@ class CardViewCell: UICollectionViewCell {
         bgView.layer.borderWidth = 1.0
         bgView.backgroundColor = UIColor.white
         
-        questionLabel.layer.cornerRadius = 10
-        questionLabel.layer.borderWidth = 1
-        questionLabel.layer.borderColor = UIColor.blue.withAlphaComponent(0.5).cgColor
+        questionView.layer.cornerRadius = 10
+        questionView.layer.borderWidth = 1
+        questionView.layer.borderColor = UIColor.blue.withAlphaComponent(0.5).cgColor
         
         answerView.layer.cornerRadius = 10
         answerView.layer.borderWidth = 1

@@ -8,9 +8,10 @@
 import UIKit
 import Combine
 
-class HomeViewController: UIViewController, AddCardDelegate {
+class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var questionsCountLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let viewModel = HomeViewModel()
@@ -33,6 +34,7 @@ class HomeViewController: UIViewController, AddCardDelegate {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] cards in
                 guard let self = self else { return }
+                self.questionsCountLabel.text = "\(cards.count)"
                 self.collectionView.reloadData()
             }
             .store(in: &disposeBag)
@@ -89,12 +91,6 @@ class HomeViewController: UIViewController, AddCardDelegate {
         let customCellNib = UINib(nibName: "CardViewCell", bundle: .main)
         collectionView.register(customCellNib, forCellWithReuseIdentifier: "CardViewCell")
     }
-    
-    // MARK: AddCardDelegate
-    
-    func dismissMe() {
-        navigationController?.dismiss(animated: true)
-    }
 
 }
 
@@ -111,7 +107,33 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         // Configure the cell
         let card = viewModel.cards[indexPath.row]
         cell.configure(card: card)
+        cell.delegate = self
         
         return cell
+    }
+}
+
+// MARK: CardViewCellDelegate
+
+extension HomeViewController: CardViewCellDelegate {
+    func delete(card: QuestionModel) {
+        Task {
+            await viewModel.delete(card: card)
+        }
+    }
+}
+
+// MARK: AddCardDelegate
+
+extension HomeViewController: AddCardDelegate {
+    func dismissMe() {
+        navigationController?.dismiss(animated: true)
+    }
+    
+    func saved() {
+        Task {
+            await viewModel.fetch()
+            dismissMe()
+        }
     }
 }

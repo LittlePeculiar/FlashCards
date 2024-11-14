@@ -10,6 +10,7 @@ import CoreData
 
 protocol AddCardDelegate: AnyObject {
     func dismissMe()
+    func saved()
 }
 
 class AddCardViewController: UIViewController {
@@ -81,6 +82,9 @@ class AddCardViewController: UIViewController {
     }
     
     private func createCard() {
+        viewModel.card.question = ""
+        viewModel.card.answers.removeAll()
+        
         if let text = question.text, !text.isEmpty {
             viewModel.card.question = text
         }
@@ -122,7 +126,9 @@ class AddCardViewController: UIViewController {
         }
         
         if !viewModel.card.question.isEmpty && viewModel.card.answers.count == 4 {
-            viewModel.saveCard()
+            if viewModel.saveCard() {
+                delegate?.saved()
+            }
         } else {
             showAlert(message: "One or more fields are empty")
         }
