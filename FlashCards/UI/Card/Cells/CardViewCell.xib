@@ -148,14 +148,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Kf-VC-1yU">
                                         <rect key="frame" x="0.0" y="230.3333333333334" width="360" height="60.333333333333343"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkb-1e-zfE">
-                                                <rect key="frame" x="5.0000000000000036" y="5" width="61.333333333333343" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" systemColor="systemIndigoColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsF-wz-GBq">
-                                                <rect key="frame" x="5" y="30.333333333333314" width="350" height="25"/>
+                                                <rect key="frame" x="5" y="5" width="350" height="50.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemIndigoColor"/>
                                                 <nil key="highlightedColor"/>
@@ -164,11 +158,9 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="CsF-wz-GBq" secondAttribute="bottom" constant="5" id="2dt-nN-8kS"/>
-                                            <constraint firstItem="CsF-wz-GBq" firstAttribute="top" secondItem="mkb-1e-zfE" secondAttribute="bottom" constant="5" id="BCY-uO-79T"/>
-                                            <constraint firstItem="CsF-wz-GBq" firstAttribute="leading" secondItem="mkb-1e-zfE" secondAttribute="leading" id="Bmf-Y3-HD0"/>
-                                            <constraint firstItem="mkb-1e-zfE" firstAttribute="top" secondItem="6Kf-VC-1yU" secondAttribute="top" constant="5" id="Jma-Vo-i8v"/>
+                                            <constraint firstItem="CsF-wz-GBq" firstAttribute="leading" secondItem="6Kf-VC-1yU" secondAttribute="leading" constant="5" id="5rY-jg-UbC"/>
+                                            <constraint firstItem="CsF-wz-GBq" firstAttribute="top" secondItem="6Kf-VC-1yU" secondAttribute="top" constant="5" id="Joy-eo-KmD"/>
                                             <constraint firstAttribute="trailing" secondItem="CsF-wz-GBq" secondAttribute="trailing" constant="5" id="iZ5-Vm-o9u"/>
-                                            <constraint firstItem="mkb-1e-zfE" firstAttribute="leading" secondItem="6Kf-VC-1yU" secondAttribute="leading" constant="5" id="ke8-Mh-dLP"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -281,9 +273,13 @@
                 <outlet property="answerView" destination="6Kf-VC-1yU" id="bfo-Dm-X9S"/>
                 <outlet property="bgView" destination="Z6r-61-AgC" id="8Fh-1F-K1G"/>
                 <outlet property="option1Label" destination="oBM-wh-lGc" id="vgf-8V-G6B"/>
+                <outlet property="option1View" destination="Kh4-p1-LCd" id="oUq-ug-uvI"/>
                 <outlet property="option2Label" destination="rZA-ow-Rnx" id="UCq-FK-2Og"/>
+                <outlet property="option2View" destination="ctT-cX-se9" id="RCh-n4-w47"/>
                 <outlet property="option3Label" destination="oJi-1s-Aqg" id="tb7-Io-Gkh"/>
+                <outlet property="option3View" destination="RvQ-SU-Tsx" id="JkW-Vc-J8j"/>
                 <outlet property="option4Label" destination="dv2-Dz-l2G" id="PmU-PO-87j"/>
+                <outlet property="option4View" destination="ogj-Y0-Reb" id="O9Y-7Y-AUA"/>
                 <outlet property="questionLabel" destination="mqt-Oz-5Wd" id="6oC-kd-T3G"/>
                 <outlet property="questionView" destination="UCb-c1-xgM" id="Yh2-dE-KxJ"/>
             </connections>

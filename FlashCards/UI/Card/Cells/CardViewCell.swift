@@ -22,6 +22,10 @@ class CardViewCell: UICollectionViewCell {
     @IBOutlet var option4Label: UILabel!
     @IBOutlet var answerLabel: UILabel!
     @IBOutlet var questionView: UIView!
+    @IBOutlet var option1View: UIView!
+    @IBOutlet var option2View: UIView!
+    @IBOutlet var option3View: UIView!
+    @IBOutlet var option4View: UIView!
     @IBOutlet var answerView: UIView!
     
     weak var delegate: CardViewCellDelegate?
@@ -54,6 +58,10 @@ class CardViewCell: UICollectionViewCell {
     
     private func showAnswer(show: Bool) {
         answerView.isHidden = !show
+        option1View.isHidden = show
+        option2View.isHidden = show
+        option3View.isHidden = show
+        option4View.isHidden = show
         
         // todo: add animation later to only show answer with style
     }
