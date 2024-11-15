@@ -71,6 +71,22 @@ class HomeViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    private func deleteAlert(card: QuestionModel) {
+        let title = "Are you sure?"
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { [weak self] (alert) in
+            guard let self = self else { return }
+            Task {
+                await self.viewModel.delete(card: card)
+            }
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func addCard(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "AddCardViewController") as? AddCardViewController else { return }
@@ -117,9 +133,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension HomeViewController: CardViewCellDelegate {
     func delete(card: QuestionModel) {
-        Task {
-            await viewModel.delete(card: card)
-        }
+        deleteAlert(card: card)
     }
 }
 

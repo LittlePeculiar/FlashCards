@@ -32,6 +32,14 @@ class AddCardViewController: UIViewController {
     private var selectedTextView = UITextView()
     weak var delegate: AddCardDelegate?
     
+    var isValid: Bool {
+        let answerSelected = viewModel.card.answers.filter({
+            $0.isCorrect == true
+        }).count == 1
+        
+        return !viewModel.card.question.isEmpty && viewModel.card.answers.count == 4 && answerSelected
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,12 +133,14 @@ class AddCardViewController: UIViewController {
             viewModel.card.answers.append(answer)
         }
         
-        if !viewModel.card.question.isEmpty && viewModel.card.answers.count == 4 {
+        if isValid {
             if viewModel.saveCard() {
                 delegate?.saved()
             }
         } else {
-            showAlert(message: "One or more fields are empty")
+            showAlert(title: "Oops! Something went wrong",
+                      message: "One or more fields are empty or answer not selected"
+            )
         }
         
     }
