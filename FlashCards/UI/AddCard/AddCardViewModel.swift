@@ -62,6 +62,10 @@ class AddCardViewModel {
                         let nserror = error as NSError
                         fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
                     }
+                } else {
+                    print("question already exists")
+                    print(newQuestion.question)
+                    isSaved = true
                 }
             }
         }

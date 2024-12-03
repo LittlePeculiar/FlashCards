@@ -11,6 +11,7 @@ import Combine
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var questionIndexLabel: UILabel!
     @IBOutlet weak var questionsCountLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -100,7 +101,7 @@ class HomeViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .always
         
         let layout = CarouselFlowLayout()
-        layout.itemSize = CGSizeMake(400, 500)
+        layout.itemSize = CGSizeMake(400, 600)
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
 
@@ -121,6 +122,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
 
         // Configure the cell
+        questionIndexLabel.text = "\(indexPath.row + 1) of"
         let card = viewModel.cards[indexPath.row]
         cell.configure(card: card)
         cell.delegate = self
