@@ -15,6 +15,7 @@ class HomeViewModel {
     @Published var showError: Bool = false
     
     var moc: NSManagedObjectContext!
+    var isShuffled: Bool = false
     
     init() {
         self.moc = CoreDataManager.shared.moc
@@ -36,8 +37,9 @@ class HomeViewModel {
             }
         }
         catch { fatalError("Error fetching Fast Dates") }
-        cards = questions
+        cards = isShuffled ? questions : questions.shuffled()
         isLoading = false
+        isShuffled = true
     }
     
     // fetch from Core Data

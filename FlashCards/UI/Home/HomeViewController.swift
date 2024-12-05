@@ -101,7 +101,7 @@ class HomeViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .always
         
         let layout = CarouselFlowLayout()
-        layout.itemSize = CGSizeMake(400, 600)
+        layout.itemSize = CGSizeMake(400, 500)
         layout.scrollDirection = .horizontal
         collectionView.collectionViewLayout = layout
 
